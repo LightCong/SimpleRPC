@@ -5,7 +5,7 @@ sys.path.append(sys.path[0] + '/..')
 
 import rpc_client, time
 
-rpc_client_ins = rpc_client.RPCClient('test')
+rpc_client_ins = rpc_client.RPCClient('test') #创建一个用户名为test的rpc客户端实例
 rpc_client_ins.connect(('127.0.0.1', 8080))  # 连接
 time.sleep(0.1)
 

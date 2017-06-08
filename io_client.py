@@ -36,7 +36,15 @@ class IOClient(object):
 		self.tcp_client.connect(dst_addr)
 
 	def check_connected(self):
-		return self.tcp_client.check_connected()
+		if len(self.tcp_client.tcpconnection_map)==0:
+			return False
+
+		conn_key=self.tcp_client.tcpconnection_map.keys()[0]
+		return self.tcp_client.check_connected(conn_key)
 
 	def send_data(self, data):
-		self.tcp_client.send_data(data)
+		if len(self.tcp_client.tcpconnection_map) == 0:
+			return
+
+		conn_key = self.tcp_client.tcpconnection_map.keys()[0]
+		self.tcp_client.send_data(conn_key,data)
